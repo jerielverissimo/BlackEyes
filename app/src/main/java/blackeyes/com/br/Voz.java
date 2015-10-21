@@ -1,26 +1,25 @@
 package blackeyes.com.br;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
-import android.speech.tts.Voice;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RecognitionListener{
+/**
+ * Created by jeriel on 10/21/15.
+ */
+public class Voz extends Activity implements RecognitionListener{
 
-    ImageButton fala;
-    boolean falaCon = true;
     private TextView returnedText;
     private ToggleButton toggleButton;
     private ProgressBar progressBar;
@@ -32,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         returnedText = (TextView) findViewById(R.id.txtReturn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
@@ -45,25 +43,9 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,this.getPackageName());
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH);
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
-        speech.startListening(recognizerIntent);
+
         inicio();
 
-        fala = (ImageButton)findViewById(R.id.imageButton);
-
-        fala.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (falaCon) {
-                    fala.setImageResource(R.drawable.play);
-                    falaCon = false;
-                } else {
-                    fala.setImageResource(R.drawable.stop);
-                    falaCon = true;
-                }
-
-            }
-        });
     }
 
     public void inicio(){
@@ -198,6 +180,5 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         }
         return message;
     }
-
 
 }
