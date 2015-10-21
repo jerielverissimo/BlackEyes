@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Black Eyes</string>
+    <string name="apresentacao"> O assitente irá auxiliá-lo(a) á utilizar esse aplicativo, case já saiba pode pular esta etapa. Eles mostrará como cadastrar um ou mais objeto e posteriormente como iniciar uma busca, para localizá-lo.</string>
+    <string name="title">ASSISTENTE DE USABILIDADE</string>
 </resources>
