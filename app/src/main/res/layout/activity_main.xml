@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="320dp"
+        android:layout_height="370dp"
         android:layout_gravity="center_horizontal"
         android:background="#fff">
 
@@ -18,19 +18,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title"
-            android:id="@+id/textView"
+            android:id="@+id/Titulo"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:textColor="#1A1818" />
+            android:textColor="#1A1818"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title.Inverse" />
 
         <TextView
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/tuto"
             android:text="@string/apresentacao"
             android:layout_marginTop="35dp"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/Titulo"
             android:layout_centerHorizontal="true"
             android:textColor="#000" />
 
@@ -38,9 +39,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="pular"
-            android:id="@+id/button"
+            android:id="@+id/btnVo"
             android:layout_marginTop="33dp"
-            android:layout_below="@+id/textView2"
+            android:layout_below="@+id/tuto"
             android:layout_centerHorizontal="true"
             android:theme="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:background="@null" />
@@ -49,9 +50,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" avançar "
-            android:id="@+id/button2"
-            android:layout_alignTop="@+id/button"
-            android:layout_alignEnd="@+id/textView2"
+            android:id="@+id/btnAv"
+            android:layout_alignTop="@+id/btnVo"
+            android:layout_alignEnd="@+id/tuto"
             android:theme="@style/Base.Widget.AppCompat.Button.Borderless.Colored" />
 
         <ImageButton
@@ -59,10 +60,21 @@
             android:layout_height="20dp"
             android:id="@+id/imageButton"
             android:layout_alignParentBottom="true"
-            android:layout_alignEnd="@+id/textView2"
+            android:layout_alignEnd="@+id/tuto"
             android:layout_marginBottom="22dp"
             android:src="@drawable/stop"
             android:background="@null" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tuoProgress"
+            android:max="6"
+            android:progress="1"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:theme="@style/AppTheme" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -70,34 +82,27 @@
         android:layout_height="fill_parent"
         android:background="#1A1717">
 
+        <ToggleButton
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton"
+            android:background="@drawable/micoff"
+            android:textOff="@string/micOff"
+            android:textOn="@string/mic"
+            android:layout_alignParentStart="true"
+            android:checked="false"
+            android:layout_above="@+id/progressBar" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Diga alguma coisa..."
             android:id="@+id/txtReturn"
             android:typeface="normal"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="55dp"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
-
-        <ImageButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:id="@+id/imageButton3"
-            android:src="@drawable/aboutus"
-            android:background="@null"
-            android:layout_alignTop="@+id/imageButton2"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="11dp" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton2"
-            android:background="@null"
-            android:src="@drawable/support"
-            android:layout_above="@+id/progressBar"
-            android:layout_toStartOf="@+id/imageButton3"
-            android:layout_marginEnd="24dp" />
 
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
@@ -105,19 +110,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/progressBar"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
-
-        <ToggleButton
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:text="New ToggleButton"
-            android:id="@+id/toggleButton"
-            android:layout_alignBottom="@+id/imageButton2"
-            android:layout_toStartOf="@+id/txtReturn"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/micoff"
-            android:textOff="@string/micOff"
-            android:textOn="@string/mic" />
+            android:layout_centerHorizontal="true"
+            android:theme="@style/AppTheme" />
 
     </RelativeLayout>
 </LinearLayout>
