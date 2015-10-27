@@ -279,6 +279,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
         text = matches.get(0);
         returnedText.setText(text);
+        comandos();
     }
 
     @Override
@@ -346,15 +347,26 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     public void onDestroy(){
         super.onDestroy();
         tts.stop();
+        speech.stopListening();
 
     }
 
 
     public void comandos(){
 
-        if(text.equals("avançar")){
-            segundaTela();
+        switch (text){
+
+            case "próximo":
+                Avancar();
+                break;
+            case "voltar":
+                Regresso();
+                break;
+            case "pular":
+                break;
+
         }
+
     }
 
     public void Subir(){
@@ -387,11 +399,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
                 }
                 if(!tts.isSpeaking()){
-                    speech.startListening(recognizerIntent);
-                    if(!toggleButton.isChecked()){
-                       speech.stopListening();
-                    }
-
 
                 }
                 h.postDelayed(this, 2000);

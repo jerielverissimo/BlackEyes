@@ -40,11 +40,11 @@
             android:layout_height="wrap_content"
             android:text="pular"
             android:id="@+id/btnVo"
-            android:layout_marginTop="33dp"
-            android:layout_below="@+id/tuto"
-            android:layout_centerHorizontal="true"
             android:theme="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:background="@null" />
+            android:background="@null"
+            android:layout_above="@+id/imageButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp" />
 
         <Button
             android:layout_width="wrap_content"
