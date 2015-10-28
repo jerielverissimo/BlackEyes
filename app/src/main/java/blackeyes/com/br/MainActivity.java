@@ -1,5 +1,6 @@
 package blackeyes.com.br;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Handler;
 import android.speech.RecognitionListener;
@@ -31,13 +32,17 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     private Intent recognizerIntent;
     private String LOG_TAG = "VoiceRecognitionActivity";
     private TextToSpeech tts;
+    private String tela = "";
     Handler h =new Handler();
     private boolean verifica = true;
-    String text = "", control = "apresentacao", volt = "pular";
+    String text = "", control = "segunda", volt = "pular";
     Button avancar, regresso;
 
+    public static int ENABLE_BLUETOOTH = 1;
+    public static int SELECT_PAIRED_DEVICE = 2;
+    public static int SELECT_DISCOVERED_DEVICE = 3;
 
-
+    static TextView statusMessage;
 
 
     @Override
@@ -48,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         Subir();
         inicio();
         tts = new TextToSpeech(this, this);
-        falarMeuTexto();
+        qualTela();
         IsSpeak();
         fala = (ImageButton)findViewById(R.id.imageButton);
         falar();
@@ -68,9 +73,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
                 switch (control){
 
-                    case "apresentacao":
-                        apresentacao();
-                        break;
+
                     case "segunda":
                         segundaTela();
                         break;
@@ -96,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         regresso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (volt){
+                switch (volt) {
 
                     case "apresentacao":
                         apresentacao();
@@ -116,6 +119,11 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                     case "sexta":
                         sextaTela();
                         break;
+
+                    case "pular":
+                        Intent naveIntent = new Intent(MainActivity.this, Nave.class);
+                        startActivity(naveIntent);
+                        break;
                 }
             }
         });
@@ -125,50 +133,87 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
         tuto.setText(getString(R.string.apresentacao));
         title.setText("tela 1");
+        tela = "tela 1";
         regresso.setText("Pular");
         control = "segunda";
         volt = "pular";
         progressTuto.setProgress(1);
+        tts.speak(getString(R.string.apresentacao), tts.QUEUE_ADD, null);
     }
 
     public void segundaTela(){
 
         tuto.setText(getString(R.string.segundaTela));
         title.setText("tela 2");
+        tela = "tela 2";
         regresso.setText("Voltar");
         control = "terceira";
         volt = "apresentacao";
         progressTuto.setProgress(2);
+        tts.speak(getString(R.string.segundaTela), tts.QUEUE_ADD, null);
     }
 
     public void terceiraTela(){
         tuto.setText(getString(R.string.terceiraTela));
         title.setText("tela 3");
+        tela = "tela 3";
         control = "quarta";
         volt = "segunda";
         progressTuto.setProgress(3);
+        tts.speak(getString(R.string.terceiraTela), tts.QUEUE_ADD, null);
     }
 
     public void quartaTela(){
         tuto.setText(getString(R.string.quartaTela));
         title.setText("tela 4");
+        tela = "tela 4";
         control = "quinta";
         volt = "terceira";
         progressTuto.setProgress(4);
+        tts.speak(getString(R.string.quartaTela), tts.QUEUE_ADD, null);
     }
 
     public void quintaTela(){
         tuto.setText(getString(R.string.quintaTela));
         title.setText("tela 5");
+        tela = "tela 5";
         control = "sexta";
         volt = "quarta";
         progressTuto.setProgress(5);
+        tts.speak(getString(R.string.quintaTela), tts.QUEUE_ADD, null);
     }
     public void sextaTela(){
         tuto.setText(getString(R.string.sextaTela));
         title.setText("tela 6");
+        tela = "tela 6";
         volt = "quinta";
         progressTuto.setProgress(6);
+        tts.speak(getString(R.string.sextaTela), tts.QUEUE_ADD, null);
+    }
+
+    public void qualTela(){
+
+        switch (tela){
+
+            case "tela 1":
+                tts.speak(getString(R.string.apresentacao), tts.QUEUE_ADD, null);
+                break;
+            case "tela 2":
+                tts.speak(getString(R.string.segundaTela), tts.QUEUE_ADD, null);
+                break;
+            case "tela 3":
+                tts.speak(getString(R.string.terceiraTela), tts.QUEUE_ADD, null);
+                break;
+            case "tela 4":
+                tts.speak(getString(R.string.quartaTela), tts.QUEUE_ADD, null);
+                break;
+            case "tela 5":
+                tts.speak(getString(R.string.quintaTela), tts.QUEUE_ADD, null);
+                break;
+            case "tela 6":
+                tts.speak(getString(R.string.sextaTela), tts.QUEUE_ADD, null);
+
+        }
     }
 
     public void falar(){
@@ -183,7 +228,8 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                     fala.setImageResource(R.drawable.stop);
                     falaCon = true;
                     verifica = true;
-                    falarMeuTexto();
+                    qualTela();
+
                 }
 
             }
@@ -280,6 +326,11 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         text = matches.get(0);
         returnedText.setText(text);
         comandos();
+        text = "";
+    }
+    public void discoverDevices(View view){
+        Intent searchPairedDevicesIntent = new Intent(this, DiscoveredDevices.class);
+        startActivityForResult(searchPairedDevicesIntent, SELECT_PAIRED_DEVICE);
     }
 
     @Override
@@ -325,21 +376,11 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         return message;
     }
 
-
     @Override
     public void onInit(int status) {
 
         if (status == TextToSpeech.SUCCESS){
-            falarMeuTexto();
-        }
-    }
-
-    private void falarMeuTexto() {
-
-        if(verifica) {
             tts.speak(getString(R.string.apresentacao), tts.QUEUE_ADD, null);
-
-
         }
     }
 
@@ -351,25 +392,90 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     }
 
-
     public void comandos(){
 
         switch (text){
 
             case "próximo":
-                Avancar();
+                switch (control){
+
+                    case "apresentacao":
+                        apresentacao();
+                        break;
+                    case "segunda":
+                        segundaTela();
+                        break;
+                    case "terceira":
+                        terceiraTela();
+                        break;
+                    case "quarta":
+                        quartaTela();
+                        break;
+                    case "quinta":
+                        quintaTela();
+                        break;
+                    case "sexta":
+                        sextaTela();
+                        break;
+                }
                 break;
+
             case "voltar":
-                Regresso();
+                switch (volt){
+
+                    case "apresentacao":
+                        apresentacao();
+                        break;
+                    case "segunda":
+                        segundaTela();
+                        break;
+                    case "terceira":
+                        terceiraTela();
+                        break;
+                    case "quarta":
+                        quartaTela();
+                        break;
+                    case "quinta":
+                        quintaTela();
+                        break;
+                    case "sexta":
+                        sextaTela();
+                        break;
+                }
                 break;
+
             case "pular":
+
+                Intent naveIntent = new Intent(MainActivity.this, Nave.class);
+                startActivity(naveIntent);
                 break;
 
         }
 
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+
+        if(requestCode == ENABLE_BLUETOOTH) {
+            if (requestCode == RESULT_OK) {
+                statusMessage.setText("Bluetooth ativado :D");
+            } else {
+                statusMessage.setText("Bluetooth não ativado :( ");
+            }
+        }
+        else if (requestCode == SELECT_PAIRED_DEVICE || requestCode == SELECT_DISCOVERED_DEVICE){
+            if(resultCode == RESULT_OK){
+                statusMessage.setText("Você selecionou " + data.getStringExtra("btnDevName") + "\n"
+                        + data.getStringExtra("btDevAddress"));
+            }
+            else {
+                statusMessage.setText("Nenhum dispositivo selecionado :(");
+            }
+        }
+    }
+
     public void Subir(){
+
         returnedText = (TextView) findViewById(R.id.txtReturn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
@@ -388,6 +494,23 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH);
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
 
+        statusMessage = (TextView)findViewById(R.id.statusMessage);
+
+        BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter().getDefaultAdapter();
+        if(btAdapter == null){
+            statusMessage.setText("Que pena! Hardware Bluetooth não está funcionando :( ");
+        }else{
+            statusMessage.setText("Ótimo! Hardware Bluetooth está funcionando :) ");
+        }
+
+        if(!btAdapter.isEnabled()){
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, ENABLE_BLUETOOTH);
+            statusMessage.setText("Solicitando ativação do Bluetooth... ");
+        }else {
+            statusMessage.setText("Bluetooth já ativado :) ");
+        }
+
     }
 
     public void IsSpeak(){
@@ -396,10 +519,10 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             public void run()
             {
                 if(tts.isSpeaking()){
-
+                    falar();
                 }
                 if(!tts.isSpeaking()){
-
+                    falar();
                 }
                 h.postDelayed(this, 2000);
             }

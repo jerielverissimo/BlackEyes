@@ -51,9 +51,9 @@
             android:layout_height="wrap_content"
             android:text=" avançar "
             android:id="@+id/btnAv"
+            android:theme="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_alignTop="@+id/btnVo"
-            android:layout_alignEnd="@+id/tuto"
-            android:theme="@style/Base.Widget.AppCompat.Button.Borderless.Colored" />
+            android:layout_alignEnd="@+id/tuto" />
 
         <ImageButton
             android:layout_width="20dp"
@@ -112,6 +112,13 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:theme="@style/AppTheme" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/statusMessage"
+            android:layout_alignTop="@+id/toggleButton"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 </LinearLayout>

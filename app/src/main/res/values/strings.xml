@@ -5,10 +5,16 @@
     <string name="mic"></string>
     <string name="micOff"></string>
     <string name="segundaTela"> A primeira etapa a ser feita é a de cadastro e para isso seleciona um dos disposivos disponíveis,
-        nomeá-lo, defini um som e um comando para ativá-lo. Para fazer isso basta avançar e dizer alguns comandos.</string>
-    <string name="terceiraTela"> " Quais são os dispositivos disponiveis?" esse comando serve para mostrar as opções de dispositivos"</string>
-    <string name="quartaTela"> "Utilizar o dispositivo ... ", esse comando serve para selecionar o dispositivo</string>
+        nomeá-lo, defini um som e um comando para ativá-lo. Para fazer isso basta dizer avançar e seguir o tutorial.</string>
+    <string name="terceiraTela">Para mostrar as opções de dispositivos" \n  " Quais são os dispositivos disponiveis?"</string>
+    <string name="quartaTela"> Para selecionar o dispositivo use. \n "Utilizar o dispositivo ... "</string>
     <string name="quintaTela">"Que tipo de som posso usar?", esse comando serve para mostrar as opções de sons que também pode ser uma de suas músicas,</string>
-    <string name="sextaTela">"Usar o som ...", esse comando serve para selecionar o som do disositivo.</string>
+    <string name="sextaTela"> Para selecionar o som do dispositivo utilize o comando.\n "Usar o som ..."</string>
+    <string name="title_activity_nave">Nave</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
 
