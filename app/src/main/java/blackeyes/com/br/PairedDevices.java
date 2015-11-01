@@ -23,6 +23,9 @@ public class PairedDevices extends ListActivity {
         super.onCreate(savedInstaceState);
 
         ListView lv = getListView();
+        LayoutInflater inflater = getLayoutInflater();
+        View header = inflater.inflate(R.layout.activity_main, lv, false);
+        lv.addHeaderView(header, null, false);
 
         BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
         Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();

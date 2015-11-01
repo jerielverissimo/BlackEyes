@@ -329,6 +329,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         text = "";
     }
     public void discoverDevices(View view){
+
         Intent searchPairedDevicesIntent = new Intent(this, DiscoveredDevices.class);
         startActivityForResult(searchPairedDevicesIntent, SELECT_PAIRED_DEVICE);
     }
@@ -394,6 +395,12 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     public void comandos(){
 
+        if(text.equals("dispositivos")){
+
+            //discoverDevices();
+
+        }
+
         switch (text){
 
             case "próximo":
@@ -448,7 +455,11 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
                 Intent naveIntent = new Intent(MainActivity.this, Nave.class);
                 startActivity(naveIntent);
+                finish();
                 break;
+
+
+
 
         }
 

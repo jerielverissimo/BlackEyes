@@ -25,6 +25,9 @@ public class DiscoveredDevices extends ListActivity{
 
 
         ListView lv = getListView();
+        LayoutInflater inflater = getLayoutInflater();
+        View header = inflater.inflate(R.layout.activity_main, lv, false);
+        lv.addHeaderView(header, null, false);
 
 
 

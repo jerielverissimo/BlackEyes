@@ -10,4 +10,13 @@
     tools:context="blackeyes.com.br.Nave"
     android:background="#1A1717">
 
+    <ImageButton
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:id="@+id/btnFalar"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/mic"
+        android:background="@null" />
+
 </RelativeLayout>
