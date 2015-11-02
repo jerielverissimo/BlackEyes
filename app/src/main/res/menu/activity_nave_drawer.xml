@@ -4,11 +4,11 @@
     <group android:checkableBehavior="single">
         <item android:id="@+id/princial" android:icon="@android:drawable/ic_menu_search"
             android:title="Busca"/>
-        <item android:id="@+id/nav_camara" android:icon="@android:drawable/ic_menu_camera"
+        <item android:id="@+id/nav_camara" android:icon="@drawable/ic_assignment_black_24dp"
             android:title="Cadastrar dispositivo" />
-        <item android:id="@+id/nav_gallery" android:icon="@android:drawable/ic_menu_gallery"
+        <item android:id="@+id/nav_gallery" android:icon="@drawable/ic_list_black_24dp"
             android:title="Selecionar dispositivos" />
-        <item android:id="@+id/nav_slideshow" android:icon="@drawable/ic_list_black_24dp"
+        <item android:id="@+id/nav_slideshow" android:icon="@drawable/ic_mode_edit_black_24dp"
             android:title="Alterar dispositivos" />
         <item android:id="@+id/nav_manage" android:icon="@drawable/ic_help_outline_black_24dp"
             android:title="Tutorial" />
