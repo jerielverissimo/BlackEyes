@@ -10,13 +10,33 @@
     tools:context="blackeyes.com.br.Nave"
     android:background="#1A1717">
 
-    <ImageButton
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:id="@+id/btnFalar"
-        android:layout_centerVertical="true"
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar2"
+        android:layout_marginBottom="43dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estado..."
+        android:id="@+id/textView2"
+        android:layout_above="@+id/progressBar2"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/mic"
-        android:background="@null" />
+        android:layout_marginBottom="58dp" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleButton2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="88dp"
+        android:textOff="Buscar"
+        android:textOn="Parar"
+        android:checked="false" />
 
 </RelativeLayout>
